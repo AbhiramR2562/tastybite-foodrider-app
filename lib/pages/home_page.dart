@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:foodpilot_app/assistantmethods/get_current_location.dart';
 import 'package:foodpilot_app/authentication/auth_page.dart';
 import 'package:foodpilot_app/global/global.dart';
 import 'package:foodpilot_app/pages/new_orders_page.dart';
+import 'package:foodpilot_app/pages/parcel_in_progress_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -48,6 +50,10 @@ class _HomePageState extends State<HomePage> {
             }
             if (index == 1) {
               // Parcel in progress
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ParcelInProgressPage()));
             }
             if (index == 2) {
               // Not yet delivered
@@ -92,6 +98,14 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    UserLocation uLocation = UserLocation();
+    uLocation.getCurrentLocation();
   }
 
   @override

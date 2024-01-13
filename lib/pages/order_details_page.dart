@@ -17,6 +17,7 @@ class OrderDetailsPage extends StatefulWidget {
 class _OrderDetailsPageState extends State<OrderDetailsPage> {
   String orderStatus = "";
   String orderByUser = "";
+  String sellerId = "";
 
   getOrderInfo() {
     FirebaseFirestore.instance
@@ -26,6 +27,7 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
         .then((DocumentSnapshot) {
       orderStatus = DocumentSnapshot.data()!["status"].toString();
       orderByUser = DocumentSnapshot.data()!["orderBy"].toString();
+      sellerId = DocumentSnapshot.data()!["sellerUID"].toString();
     });
   }
 
@@ -122,6 +124,9 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                                     model: Address.fromJson(snapshot.data!
                                         .data()! as Map<String, dynamic>),
                                     orderStatus: orderStatus,
+                                    orderId: widget.orderID,
+                                    sellerId: sellerId,
+                                    orderByUser: orderByUser,
                                   )
                                 : Center(
                                     child: CircularProgressIndicator(),

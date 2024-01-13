@@ -1,11 +1,50 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:foodpilot_app/assistantmethods/get_current_location.dart';
+import 'package:foodpilot_app/global/global.dart';
 import 'package:foodpilot_app/models/address.dart';
+import 'package:foodpilot_app/pages/parcel_picking_page.dart';
 import 'package:foodpilot_app/pages/splash_page.dart';
 
 class ShipmentAddressDesign extends StatelessWidget {
   final Address? model;
   final String? orderStatus;
-  const ShipmentAddressDesign({super.key, this.model, this.orderStatus});
+  final String? orderId;
+  final String? sellerId;
+  final String? orderByUser;
+  const ShipmentAddressDesign({
+    super.key,
+    this.model,
+    this.orderStatus,
+    this.orderId,
+    this.sellerId,
+    this.orderByUser,
+  });
+
+  confimedParcelShipment(BuildContext context, String getOrderID,
+      String sellerId, String purchaserId) {
+    FirebaseFirestore.instance.collection("orders").doc(getOrderID).update({
+      "riderUID": sharedPreferences!.getString("uid"),
+      "riderName": sharedPreferences!.getString("name"),
+      "status": "picking",
+      "lat": position!.latitude,
+      "lng": position!.longitude,
+      "address": completeAddress,
+    });
+
+    // send rider to shipmentPage
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ParcelPickingPage(
+                  purchaserId: purchaserId,
+                  purchaserAddress: model!.fullAddress,
+                  purchaserLat: model!.lat,
+                  purchaserLng: model!.lng,
+                  sellerId: sellerId,
+                  getOrderID: getOrderID,
+                )));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +113,17 @@ class ShipmentAddressDesign extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
                   child: InkWell(
-                    onTap: () => Navigator.push(
+                    onTap: () {
+                      UserLocation uLocation = UserLocation();
+                      uLocation.getCurrentLocation();
+
+                      confimedParcelShipment(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const SplashPage())),
+                        orderId!,
+                        sellerId!,
+                        orderByUser!,
+                      );
+                    },
                     child: Container(
                       decoration: const BoxDecoration(
                         gradient: LinearGradient(
