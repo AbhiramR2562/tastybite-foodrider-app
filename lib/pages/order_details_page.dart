@@ -107,8 +107,21 @@ class _OrderDetailsPageState extends State<OrderDetailsPage> {
                         ),
                         const Divider(thickness: 4),
                         orderStatus == "ended"
-                            ? Image.asset(
-                                "assets/images/pngtree-green-approved.png")
+                            ? Column(
+                                children: [
+                                  const SizedBox(height: 5),
+                                  const Text(
+                                    "Delivered",
+                                    style: TextStyle(
+                                      fontSize: 35,
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Image.asset(
+                                      "assets/images/pngtree-green-approved.png"),
+                                ],
+                              )
                             : Image.asset("assets/images/delivery-ongoing.jpg"),
                         const Divider(thickness: 4),
                         FutureBuilder(

@@ -109,8 +109,8 @@ class _ParcelPickingPageState extends State<ParcelPickingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image.asset(
-                  'assets/images/delivery.jpg',
-                  width: 50,
+                  'assets/images/small-business-store-shop-design-restaurants-vector-44930113-removebg-preview.png',
+                  width: 60,
                 ),
                 const SizedBox(width: 7),
                 const Column(

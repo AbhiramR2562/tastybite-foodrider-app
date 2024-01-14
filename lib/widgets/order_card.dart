@@ -18,6 +18,7 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      //-> Navigate to OrderDetailsPage
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(

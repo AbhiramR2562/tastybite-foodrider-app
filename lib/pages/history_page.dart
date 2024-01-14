@@ -5,26 +5,26 @@ import 'package:foodpilot_app/global/global.dart';
 import 'package:foodpilot_app/widgets/order_card.dart';
 import 'package:foodpilot_app/widgets/simple_app_bar.dart';
 
-class ParcelInProgressPage extends StatefulWidget {
-  const ParcelInProgressPage({super.key});
+class HistoryPage extends StatefulWidget {
+  const HistoryPage({super.key});
 
   @override
-  State<ParcelInProgressPage> createState() => _ParcelInProgressPageState();
+  State<HistoryPage> createState() => _HistoryPageState();
 }
 
-class _ParcelInProgressPageState extends State<ParcelInProgressPage> {
+class _HistoryPageState extends State<HistoryPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         appBar: SimpleAppBar(
-          title: "Parcel in progress",
+          title: "History",
         ),
         body: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
               .collection("orders")
               .where("riderUID", isEqualTo: sharedPreferences!.getString("uid"))
-              .where("status", isEqualTo: "picking")
+              .where("status", isEqualTo: "ended")
               .snapshots(),
           builder: (c, snapshot) {
             return snapshot.hasData

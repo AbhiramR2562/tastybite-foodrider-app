@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:foodpilot_app/assistantmethods/get_current_location.dart';
 import 'package:foodpilot_app/authentication/auth_page.dart';
 import 'package:foodpilot_app/global/global.dart';
+import 'package:foodpilot_app/pages/earnings_page.dart';
+import 'package:foodpilot_app/pages/history_page.dart';
 import 'package:foodpilot_app/pages/new_orders_page.dart';
+import 'package:foodpilot_app/pages/not_yet__delivered_page.dart';
 import 'package:foodpilot_app/pages/parcel_in_progress_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,12 +61,20 @@ class _HomePageState extends State<HomePage> {
             }
             if (index == 2) {
               // Not yet delivered
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => NotYetDeliveredPage()));
             }
             if (index == 3) {
               // History
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HistoryPage()));
             }
             if (index == 4) {
-              // Tottal earning
+              // Tottal earnings
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => EarningsPage()));
             }
             if (index == 5) {
               // Logout
@@ -106,6 +118,28 @@ class _HomePageState extends State<HomePage> {
 
     UserLocation uLocation = UserLocation();
     uLocation.getCurrentLocation();
+    getPerParcelDeliveryAmount();
+    getRiderPreviousEarnings();
+  }
+
+  getRiderPreviousEarnings() {
+    FirebaseFirestore.instance
+        .collection("riders")
+        .doc(sharedPreferences!.getString("uid"))
+        .get()
+        .then((snap) {
+      previousRiderEarnings = snap.data()!["earning"].toString();
+    });
+  }
+
+  getPerParcelDeliveryAmount() {
+    FirebaseFirestore.instance
+        .collection("perDelivery")
+        .doc("tasty159")
+        .get()
+        .then((snap) {
+      perParcelDeliveryAmount = snap.data()!["amount"].toString();
+    });
   }
 
   @override
