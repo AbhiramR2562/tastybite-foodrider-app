@@ -1,7 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:foodpilot_app/models/items.dart';
 import 'package:foodpilot_app/pages/order_details_page.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class OrderCard extends StatelessWidget {
   final int? itemCount;
@@ -19,10 +22,14 @@ class OrderCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       //-> Navigate to OrderDetailsPage
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => OrderDetailsPage(orderID: orderID))),
+      onTap: () {
+        //requestLocationPermission();
+
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OrderDetailsPage(orderID: orderID)));
+      },
       child: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

@@ -4,6 +4,7 @@ import 'package:foodpilot_app/assistantmethods/assistant_method.dart';
 import 'package:foodpilot_app/global/global.dart';
 import 'package:foodpilot_app/widgets/order_card.dart';
 import 'package:foodpilot_app/widgets/simple_app_bar.dart';
+import 'package:geocoding/geocoding.dart';
 
 class NewOrdersPage extends StatefulWidget {
   const NewOrdersPage({super.key});
@@ -17,6 +18,7 @@ class _NewOrdersPageState extends State<NewOrdersPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.grey[300],
         appBar: SimpleAppBar(
           title: "New Orders",
         ),

@@ -125,7 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
           showDialog(
             context: context,
             builder: (c) {
-              return ErrorDialog(
+              return const ErrorDialog(
                   message:
                       "Please write the complete required info for registeration..");
             },
@@ -136,7 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
         showDialog(
           context: context,
           builder: (c) {
-            return ErrorDialog(message: "password do not match..");
+            return const ErrorDialog(message: "password do not match..");
           },
         );
       }
@@ -229,7 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   left: 80,
                   child: IconButton(
                     onPressed: () => _getImage(),
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.add_a_photo,
                       color: Colors.blue,
                     ),
@@ -320,7 +320,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.purple,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 50,
                             vertical: 20,
                           )),

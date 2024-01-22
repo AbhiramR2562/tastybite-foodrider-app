@@ -46,6 +46,7 @@ dependencies:
   shared_preferences: ^2.2.2
   intl: ^0.19.0
   url_launcher: ^6.0.18
+  fluttertoast: ^8.2.4
 
 dev_dependencies:
   flutter_test:
@@ -100,6 +101,9 @@ flutter:
     - family: Varela
       fonts:
         - asset: assets/fonts/VarelaRound-Regular.ttf
+    - family: Train
+      fonts:
+        - asset: assets/fonts/TrainOne-Regular.ttf     
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

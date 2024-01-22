@@ -13,17 +13,17 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  startTimer() {
-    Timer(const Duration(seconds: 4), () async {
-      // cheking the rider sign up or not
-      if (firebaseAuth.currentUser != null) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const HomePage()));
-      } else {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const AuthPage()));
-      }
-    });
+  startTimer() async {
+    await Future.delayed(Duration(seconds: 8));
+
+    // cheking the rider sign up or not
+    if (firebaseAuth.currentUser != null) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomePage()));
+    } else {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const AuthPage()));
+    }
   }
 
   @override
@@ -38,7 +38,7 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       // backgroundColor: Colors.red,
       body: Container(
-        color: Color.fromARGB(255, 230, 108, 99),
+        color: const Color.fromARGB(255, 230, 108, 99),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +62,17 @@ class _SplashPageState extends State<SplashPage> {
                     letterSpacing: 3,
                   ),
                 ),
-              )
+              ),
+              const Text(
+                "Tasty Bite",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontFamily: "Train",
+                  letterSpacing: 3,
+                ),
+              ),
             ],
           ),
         ),

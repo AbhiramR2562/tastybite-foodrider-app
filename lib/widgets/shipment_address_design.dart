@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:foodpilot_app/assistantmethods/get_current_location.dart';
 import 'package:foodpilot_app/global/global.dart';
 import 'package:foodpilot_app/models/address.dart';
+import 'package:foodpilot_app/pages/home_page.dart';
 import 'package:foodpilot_app/pages/parcel_picking_page.dart';
 import 'package:foodpilot_app/pages/splash_page.dart';
 
@@ -21,7 +22,7 @@ class ShipmentAddressDesign extends StatelessWidget {
     this.orderByUser,
   });
 
-  confimedParcelShipment(BuildContext context, String getOrderID,
+  confirmedParcelShipment(BuildContext context, String getOrderID,
       String sellerId, String purchaserId) {
     FirebaseFirestore.instance.collection("orders").doc(getOrderID).update({
       "riderUID": sharedPreferences!.getString("uid"),
@@ -117,7 +118,7 @@ class ShipmentAddressDesign extends StatelessWidget {
                       UserLocation uLocation = UserLocation();
                       uLocation.getCurrentLocation();
 
-                      confimedParcelShipment(
+                      confirmedParcelShipment(
                         context,
                         orderId!,
                         sellerId!,
@@ -140,7 +141,7 @@ class ShipmentAddressDesign extends StatelessWidget {
                       height: 50,
                       child: const Center(
                         child: Text(
-                          "Confirm - To deliver this parcel",
+                          "Confirm to deliver this parcel",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 15,
@@ -158,7 +159,7 @@ class ShipmentAddressDesign extends StatelessWidget {
           child: Center(
             child: InkWell(
               onTap: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const SplashPage())),
+                  MaterialPageRoute(builder: (context) => const HomePage())),
               child: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:foodpilot_app/global/global.dart';
+import 'package:foodpilot_app/pages/home_page.dart';
 import 'package:foodpilot_app/pages/splash_page.dart';
 
 class EarningsPage extends StatefulWidget {
@@ -43,10 +44,8 @@ class _EarningsPageState extends State<EarningsPage> {
                 ),
               ),
               GestureDetector(
-                onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SplashPage())),
+                onTap: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const HomePage())),
                 child: const Card(
                   color: Colors.white54,
                   margin: EdgeInsets.symmetric(vertical: 40, horizontal: 135),

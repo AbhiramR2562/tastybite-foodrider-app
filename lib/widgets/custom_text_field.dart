@@ -18,11 +18,11 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(10))),
-      padding: EdgeInsets.all(8.0),
-      margin: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(10),
       child: TextFormField(
         enabled: enabled,
         controller: controller,
